@@ -1,0 +1,14 @@
+#!/usr/bin/python3
+
+import subprocess
+import re
+
+con = stdoutdata = subprocess.getoutput("hcitool con")
+exp = re.compile(r'(?:[0-9a-fA-F]:?){12}')
+
+try:
+    con = re.search(exp, con).group(0)
+    name = stdoutdata = subprocess.getoutput("hcitool name " + con)
+    print(name)
+except AttributeError:
+    print("")

@@ -1,0 +1,24 @@
+#!/usr/bin/python3
+
+import subprocess
+
+song = stdoutdata = subprocess.getoutput("mocp -Q %song")
+album = stdoutdata = subprocess.getoutput("mocp -Q %album")
+artist = stdoutdata = subprocess.getoutput("mocp -Q %artist")
+state = stdoutdata = subprocess.getoutput("mocp -Q %state")
+l = len(song.split())
+
+# Cut 
+if l > 10:
+    song = song.split()
+    song = song[0:10]
+    song = (' '.join(song) + " ...")
+
+if state == "PLAY":
+    print(artist + " - " + song + " ")
+else:
+    if state == "PAUSE": 
+        print(artist + " - " + song + " ")
+    else:
+        if state == "STOP":
+            print("")
